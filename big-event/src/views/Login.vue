@@ -1,6 +1,7 @@
 <script setup>
 import { User, Lock } from '@element-plus/icons-vue'
 import { ref } from 'vue'
+import { ElMessage } from 'element-plus'
 //控制注册与登录表单的显示， 默认显示注册
 const isRegister = ref(false)
 // 定义数据模型
@@ -41,13 +42,15 @@ import { userRegisterService, userLoginService } from '@/api/user.js';
 const register = async () => {
     // registerData是一个响应式数据
     let result = await userRegisterService(registerData.value)
-    if (result.code === 0) {
-        // 成功了
-        alert(result.msg ? result.msg : '注册成功')
-    } else {
-        // 失败了
-        alert('注册失败')
-    }
+    // if (result.code === 0) {
+    //     // 成功了
+    //     alert(result.msg ? result.msg : '注册成功')
+    // } else {
+    //     // 失败了
+    //     alert('注册失败')
+    // }
+    // alert(result.msg ? result.msg : '注册成功')
+    ElMessage.success(result.msg ? result.msg : '注册成功')
 }
 
 // 绑定数据，复用注册表单的数据模型
@@ -56,14 +59,17 @@ const register = async () => {
 const login = async () => {
     // 调用接口，完成登录
     let result = await userLoginService(registerData.value);
-    if (result.code === 0) {
-        // 成功了
-        alert(result.msg ? result.msg : '登录成功')
-    } else {
-        // 失败了
-        alert('登录失败')
-    }
+    // if (result.code === 0) {
+    //     // 成功了
+    //     alert(result.msg ? result.msg : '登录成功')
+    // } else {
+    //     // 失败了
+    //     alert('登录失败')
+    // }
+    // alert(result.msg ? result.msg : '登录成功')
+    ElMessage.success(result.msg ? result.msg : '成功')
 }
+
 
 // 定义函数，清空数据模型的数据
 const clearRegisterData = () => {
